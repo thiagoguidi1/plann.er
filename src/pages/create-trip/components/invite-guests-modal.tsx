@@ -1,5 +1,6 @@
 import { AtSign, Plus, X } from "lucide-react";
 import { FormEvent } from "react";
+import { GlobalButton } from "../../../global-components/button";
 
 // Interface pra exportar parametros que estão em outra pagina, passando o mesmo nome, tipo e conteudo(se tiver)
 interface InviteGuestsModalProps {
@@ -65,14 +66,11 @@ export function InviteGuestsModal({
                   className="flex-1 bg-transparent text-lg outline-none placeholder-zinc-400"
                 />
               </div>
-
-              <button
-                type="submit"
-                className="flex items-center gap-2 px-5 py-2 font-medium rounded-lg bg-lime-300 text-lime-950 hover:bg-lime-400"
-              >
+              
+              <GlobalButton type="submit">
                 Convidar
                 <Plus className="size-5" />
-              </button>
+              </GlobalButton>
             </form>
           </div>
         </div>

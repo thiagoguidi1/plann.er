@@ -1,5 +1,6 @@
-import { User, X } from "lucide-react";
+import { Mail, User, X } from "lucide-react";
 import { FormEvent } from "react";
+import { GlobalButton } from "../../../global-components/button";
 
 interface ConfirmTripModalProps {
     switchTripModal: () => void
@@ -29,7 +30,7 @@ export function ConfirmTripModal({
 
             {/* Send Email Input */}
             <form
-              onClick={createTrip}
+              onSubmit={createTrip}
               className="space-y-3"
             >
               <div className="flex items-center gap-2 h-14 px-4 rounded-lg border bg-zinc-950 border-zinc-800">
@@ -42,22 +43,19 @@ export function ConfirmTripModal({
                 />
               </div>
               <div className="flex items-center gap-2 h-14 px-4 rounded-lg border bg-zinc-950 border-zinc-800">
-                <User className="size-5 text-zinc-400" />
+                <Mail className="size-5 text-zinc-400" />
                 <input
                   type="email"
                   name="email"
-                  placeholder="Seu nome completo..."
+                  placeholder="Seu e-mail..."
                   className="flex-1 bg-transparent text-lg outline-none placeholder-zinc-400"
                 />
               </div>
-
-              <button
-               
-                type="submit"
-                className="w-full gap-2 px-5 h-11 flex justify-center items-center  font-medium rounded-lg bg-lime-300 text-lime-950 hover:bg-lime-400"
-              >
+              
+              <GlobalButton type="submit" size="full">
                 Confirmar criação da viagem
-              </button>
+              </GlobalButton>
+              
             </form>
           </div>
         </div>
