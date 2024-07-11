@@ -52,7 +52,7 @@
   - [x] Seção de Links;
   - [x] Seção de Convidados.
 
-- [ ]  Conectar API com o Backend.
+- [ ]  Conectar o Frontend com a API e Backend.
 
 </div>
 
@@ -96,6 +96,8 @@
   <li>Lucide Icons</li>
   <li>React Routers</li>
   <li>TailwindCSS Variants</li>
+  <li>React DayPicker</li>
+  <li>Date FNS</li>
 </ul>
 
 </div>
