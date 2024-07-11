@@ -4,6 +4,8 @@ import { InviteGuestsModal } from "./components/invite-guests-modal";
 import { ConfirmTripModal } from "./components/confirm-trip-modal";
 import { DestinationAndDateStep } from "./components/destination-and-date-step";
 import { InviteGuestsStep } from "./components/invite-guests-step";
+import { DateRange } from "react-day-picker";
+import { api } from "../../lib/axios";
 
 export function CreateTipPage() {
 
@@ -62,16 +64,58 @@ export function CreateTipPage() {
   }
 
   const [isConfirmTripModalOpen, setIsConfirmTripModalOpen]  = useState(false);
+
   function switchTripModal() {
     setIsConfirmTripModalOpen(!isConfirmTripModalOpen)
   }
 
-  const navigate = useNavigate()
-  function createTrip(event: FormEvent<HTMLFormElement>) {
+  const navigate = useNavigate();
+
+  async function createTrip(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-   navigate('/trips/123')
+
+    console.log(destination);
+    console.log(ownerName);
+    console.log(ownerEmail);
+    console.log(eventStartAndEndDates);
+    console.log(emailsToInvite)
+
+    //Se nao existir um destino, cancela
+    if (!destination) {
+      return
+    }
+    //Se nao existir uma data, cancela
+    if (!eventStartAndEndDates?.from || !eventStartAndEndDates?.to) {
+      return
+    }
+    //Se o usuario não convidou ninguém, cancela
+    if (emailsToInvite.length === 0) {
+      return
+    }
+    //Se o usuario nao preencheu o nome e email, cancela
+    if (!ownerName || !ownerEmail) {
+      return
+    }
+
+
+    const response = await api.post('/trips', {
+      destination,
+      starts_at: eventStartAndEndDates.from,
+      ends_at: eventStartAndEndDates.to,
+      emails_to_invite: emailsToInvite,
+      owner_name: ownerName,
+      owner_email: ownerEmail
+    })
+
+    const { tripId } = response.data
+    navigate(`/trips/${tripId}`)
   }
 
+
+  const [destination, setDestination] = useState('');
+  const [ownerName, setOwnerName] = useState('');
+  const [ownerEmail, setOwnerEmail] = useState('');
+  const [eventStartAndEndDates, setEventStartAndEndDates] = useState<DateRange | undefined>()
 
   return (
     <div className="h-screen flex items-center justify-center bg-pattern bg-no-repeat bg-center">
@@ -90,6 +134,9 @@ export function CreateTipPage() {
           <DestinationAndDateStep 
             isGuestsInputOpen={isGuestsInputOpen}
             switchGuestsInput={switchGuestsInput}
+            setDestination={setDestination}
+            eventStartAndEndDates={eventStartAndEndDates}
+            setEventStartAndEndDates={setEventStartAndEndDates}
           />
         
 
@@ -127,7 +174,8 @@ export function CreateTipPage() {
         <ConfirmTripModal
           switchTripModal={switchTripModal}
           createTrip={createTrip}
-
+          setOwnerName={setOwnerName}
+          setOwnerEmail={setOwnerEmail}
         />
       )}
     </div>

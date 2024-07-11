@@ -1,33 +1,50 @@
-import { CircleDashed, UserCog } from "lucide-react";
+import { CheckCircle2, CircleDashed, UserCog } from "lucide-react";
 import { GlobalButton } from "../../../global-components/button";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { api } from "../../../lib/axios";
+
+interface Participant {
+  id: string
+  name: string | null
+  email: string
+  is_confirmed: boolean
+}
+
 
 export function GuestsList() {
+  const { tripId } = useParams();
+  //Ira salvar um objeto igual a interface Participant ou undefined
+  const [participants, setParticipants] = useState<Participant[]>([]);
+
+  //O primeiro parametro só ira executar dnv caso o segundo parametro (tripId) mude
+  useEffect(() => {
+    api.get(`/trips/${tripId}/participants`).then(res => setParticipants(res.data.participants))
+  }, [tripId])
+  
   return (
     <div className="space-y-6">
       <h2 className="font-semibold text-xl">Convidados</h2>
       {/* Guest List */}
       <div className="space-y-5">
         {/* Guest X */}
-        <div className="flex items-center justify-between gap-4">
-          <div className="space-y-1.5">
-            <span className="block font-medium text-zinc-100">Thiago Guidi</span>
-            <span className="block text-sm text-zinc-400 truncate">
-              thiagoguidi@outlook.com
-            </span>
-          </div>
-          <CircleDashed className="size-5 text-zinc-400 shrink-0" />
-        </div>
-
-        {/* Guest X */}
-        <div className="flex items-center justify-between gap-4">
-          <div className="space-y-1.5">
-            <span className="block font-medium text-zinc-100">Agatha Linhares</span>
-            <span className="block text-sm text-zinc-400 truncate">
-              agathalinhares@outlook.com
-            </span>
-          </div>
-          <CircleDashed className="size-5 text-zinc-400 shrink-0" />
-        </div>
+            {participants.map((participant, index) => {
+              return (
+                <div  key={participant.id} className="flex items-center justify-between gap-4">
+                  <div className="space-y-1.5">
+                    <span className="block font-medium text-zinc-100">{participant.name ?? `Convidado ${index}`}</span>
+                    <span className="block text-sm text-zinc-400 truncate">
+                      {participant.email.toLowerCase()}
+                    </span>
+                  </div>
+                  {participant.is_confirmed ? (
+                    <CheckCircle2 className="size-5 text-green-400 shrink-0" />
+                  ) : (
+                    <CircleDashed className="size-5 text-zinc-400 shrink-0" />
+                  )}
+                </div>
+              )
+            })}
       </div>
       
       {/* Register Button Link  */}

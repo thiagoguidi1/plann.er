@@ -4,14 +4,15 @@ import { GlobalButton } from "../../../global-components/button";
 
 interface ConfirmTripModalProps {
     switchTripModal: () => void
+    setOwnerName: (name: string) => void
+    setOwnerEmail: (email: string) => void
     createTrip: (event: FormEvent<HTMLFormElement>) => void
 }
 
 export function ConfirmTripModal({
-  switchTripModal, createTrip
+  switchTripModal, createTrip,
+  setOwnerName, setOwnerEmail
 }: ConfirmTripModalProps) {
-
- 
 
    return (
       <div className="flex items-center justify-center fixed inset-0 bg-black/60">
@@ -40,6 +41,7 @@ export function ConfirmTripModal({
                   name="text"
                   placeholder="Seu nome completo..."
                   className="flex-1 bg-transparent text-lg outline-none placeholder-zinc-400"
+                  onChange={event => setOwnerName(event.target.value)}
                 />
               </div>
               <div className="flex items-center gap-2 h-14 px-4 rounded-lg border bg-zinc-950 border-zinc-800">
@@ -49,6 +51,7 @@ export function ConfirmTripModal({
                   name="email"
                   placeholder="Seu e-mail..."
                   className="flex-1 bg-transparent text-lg outline-none placeholder-zinc-400"
+                  onChange={event => setOwnerEmail(event.target.value)}
                 />
               </div>
               

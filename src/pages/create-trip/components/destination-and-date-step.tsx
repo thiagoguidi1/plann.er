@@ -7,19 +7,22 @@ import "react-day-picker/dist/style.css";
 
 interface DestinationAndDateStepProps {
   isGuestsInputOpen: boolean
+  eventStartAndEndDates: DateRange | undefined
   switchGuestsInput: () => void
+  setDestination: (destination: string) => void
+  setEventStartAndEndDates: (dates: DateRange | undefined) => void
 }
 
 export function DestinationAndDateStep({
-  isGuestsInputOpen, switchGuestsInput
+  isGuestsInputOpen, switchGuestsInput,
+  setDestination, setEventStartAndEndDates,
+  eventStartAndEndDates
 }: DestinationAndDateStepProps) {
 
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false)
   function switchDatePicker() {
     setIsDatePickerOpen(!isDatePickerOpen);
   }
-
-  const [eventStartAndEndDates, setEventStartAndEndDates] = useState<DateRange | undefined>()
 
   const displayedDate = eventStartAndEndDates  && eventStartAndEndDates.from && eventStartAndEndDates.to 
   ? format(eventStartAndEndDates.from, "dd' de 'LLL").concat(" até ")
@@ -35,6 +38,7 @@ export function DestinationAndDateStep({
           type="text"
           placeholder="Para onde você vai?"
           className="flex-1 bg-transparent text-lg outline-none placeholder-zinc-400"
+          onChange={event => setDestination(event.target.value)}
         />
       </div>
 
@@ -74,7 +78,7 @@ export function DestinationAndDateStep({
       {/* isGuestsInputOpen é verdadeiro? */}
       {isGuestsInputOpen ? (
         // Se sim, faz isso
-        <GlobalButton onClick={switchGuestsInput}>
+        <GlobalButton onClick={switchGuestsInput} variant="secondary">
           Alterar local/data
           <Settings2 className="size-5" />
         </GlobalButton>
