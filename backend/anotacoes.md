@@ -1,0 +1,4 @@
+prisma
+fastify
+zod
+nodemailer
