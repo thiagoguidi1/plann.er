@@ -52,7 +52,13 @@
   - [x] Seção de Links;
   - [x] Seção de Convidados.
 
-- [ ]  Conectar o Frontend com a API e Backend.
+- [ ]  Conectar o Frontend com a API e Backend;
+  - [x]  Página Inicial;
+  - [ ]  Página da Viagem;
+    - [x]  Cadastrar Atividade;
+    - [ ]  Alterar local/data;
+    - [ ]  Cadastrar novo link;
+    - [ ]  Gerenciar convidados.
 
 </div>
 
