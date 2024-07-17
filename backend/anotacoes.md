@@ -1,4 +1,0 @@
-prisma
-fastify
-zod
-nodemailer
