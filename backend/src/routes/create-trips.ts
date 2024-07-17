@@ -5,6 +5,7 @@ import { prisma } from "../lib/prisma";
 import { getMailClient } from "../lib/mail";
 import nodemailer from 'nodemailer';
 import { dayjs } from "../lib/dayjs";
+import { ClientError } from "../errors/client-error";
 
 
 export async function createTrip(app: FastifyInstance) {
@@ -26,12 +27,12 @@ export async function createTrip(app: FastifyInstance) {
     //Se a data de inicio da viagem, for antes da data atual de criação
     if (dayjs(starts_at).isBefore(new Date())) {
       //Cria um erro
-      throw new Error('Invalid trip start date, you must enter a date equal or greater than today.')
+      throw new ClientError('Invalid trip start date, you must enter a date equal or greater than today.')
     }
     //Se a data de término for menor que a data de criação
     if (dayjs(ends_at).isBefore(starts_at)) {
       //Cria um erro
-      throw new Error('Invalid trip end date, you must enter a date greater than today.')
+      throw new ClientError('Invalid trip end date, you must enter a date greater than today.')
     }
 
     

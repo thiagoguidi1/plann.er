@@ -3,6 +3,7 @@ import { ZodTypeProvider } from "fastify-type-provider-zod";
 import { z } from 'zod';
 import { prisma } from "../lib/prisma";
 import { dayjs } from "../lib/dayjs";
+import { ClientError } from "../errors/client-error";
 
 
 export async function updateTrip(app: FastifyInstance) {
@@ -29,19 +30,19 @@ export async function updateTrip(app: FastifyInstance) {
 
     //Se a viagem nao exisitir, retorna um erro
     if (!trip) {
-      throw new Error('Trip not found')
+      throw new ClientError('Trip not found')
     }
 
     //Se a data de criação da viagem for antes do dia de hoje
-    // if (dayjs(starts_at).isBefore(new Date())) {
-    //   //Cria um erro
-    //   throw new Error('Invalid trip start date, you must enter a date equal or greater than today.')
-    // }
+    if (dayjs(starts_at).isBefore(new Date())) {
+       //Cria um erro
+       throw new ClientError('Invalid trip start date, you must enter a date equal or greater than today.')
+    }
     //Se a data de término for menor que a data de criação
-    // if (dayjs(ends_at).isBefore(starts_at)) {
-    //   //Cria um erro
-    //   throw new Error('Invalid trip end date, you must enter a date greater than today.')
-    // }
+    if (dayjs(ends_at).isBefore(starts_at)) {
+      //Cria um erro
+      throw new ClientError('Invalid trip end date, you must enter a date greater than today.')
+    }
 
     await prisma.trip.update({
       where: { id: tripId },
