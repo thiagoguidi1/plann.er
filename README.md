@@ -21,7 +21,8 @@
 <a href="#funcionalidades">Funcionalidades </a>&nbsp;&nbsp;•&nbsp;&nbsp;
 <a href="#layout">Layout </a>&nbsp;&nbsp;•&nbsp;&nbsp;
 <a href="#tecnologias">Tecnologias </a>&nbsp;&nbsp;•&nbsp;&nbsp;
-<!-- <a href="#comoexecutar">Como executar </a>&nbsp;&nbsp;•&nbsp;&nbsp; -->
+<a href="#aprendizados">Aprendizados </a>&nbsp;&nbsp;•&nbsp;&nbsp;
+<a href="#comoexecutar">Como executar </a>&nbsp;&nbsp;•&nbsp;&nbsp;
 <a href="#autor">Autor </a>&nbsp;&nbsp;•&nbsp;&nbsp;
 <a href="#licenca">Licença </a>
 </div>
@@ -30,7 +31,7 @@
 
 <div id="sobre">
 <h2>💻 Sobre o projeto</h1>
-  <p>Projeto feito na semana <a href="https://www.rocketseat.com.br/eventos/nlw/convite/thiago-11356">NLW Journey</a> da Rocketseat.</p>
+  <p>Projeto feito na semana <a href="https://www.rocketseat.com.br/eventos/nlw/convite/thiago-11356">NLW Journey</a> da <a href="www.rocketseat.com.br">Rocketseat</a>.</p>
   <p>
   Plann.er é um site onde você pode criar um planejamento para a sua viagem. Você pode escolher a data, convidar pessoas via e-mail, adicionar tarefas e/ou programação dos dias e entre outras funcionalidades. 
   </p>
@@ -52,7 +53,7 @@
   - [x] Seção de Links;
   - [x] Seção de Convidados.
 
-- [ ]  Conectar o Frontend com a API e Backend;
+- [x]  Conexões do Frontend com a API e Backend:
   - [x]  Página Inicial;
   - [ ]  Página da Viagem;
     - [x]  Cadastrar Atividade;
@@ -94,29 +95,46 @@
 <br>
 <p><strong>Server / Backend:</strong></p>
 <ul>
-  <li>NodeJs</li>
+  <li>NodeJs;</li>
+  <li>Prisma;</li>
+  <li>Fastify;</li>
+  <li>Zod;</li>
+  <li>Nodemailer.</li>
 </ul>
 <br>
 <p><strong>Utilitários:</strong></p>
 <ul>
-  <li>Lucide Icons</li>
-  <li>React Routers</li>
-  <li>TailwindCSS Variants</li>
-  <li>React DayPicker</li>
-  <li>Date FNS</li>
+  <li>Lucide Icons;</li>
+  <li>React Routers;</li>
+  <li>TailwindCSS Variants;</li>
+  <li>React DayPicker;</li>
+  <li>Date FNS.</li>
 </ul>
 
 </div>
 
 <br>
 
-<!-- 
+<div id="aprendizados">
+<h2>🌟 Aprendizados</h2>
+<h3>Frontend</h3>
+<p>Aprendi sobre componentes globais, rotas de páginas, integrar backend com frontend, aprimorei meus conhecimentos 
+com useState, melhor organização dos arquivos e entre outros.
+
+<h3>Backend</h3>
+<p>Aprendi sobre criação de banco de dados, criar api e rotas, utilizar o Fastify, validação com zod, aprimorei meus conhecimentos com NodeJS e TypeScript, aprendi a validar
+as informações do arquivo .env e entre outros.</p>
+</p>
+</div>
+
+<br>
+
 <div id="comoexecutar">
 <h2>📋 Como executar o projeto</h2>
 <p>Este projeto é divido em duas partes:</p>
 <ol>
-  <li>Backend (pasta X)</li>
-  <li>Frontend (pasta Y)</li>
+  <li>Backend (pasta backend)</li>
+  <li>Frontend (pasta frontend)</li>
 </ol>
 <p>O Frontend precisa que o Backend esteja sendo executado para funcionar.</p>
 <h3>Pré-requisitos</h3>
@@ -131,21 +149,23 @@
 ```bash
 
 # Clone este repositório
-$ git clone <>
+$ git clone https://github.com/thiagoguidi1/plann.er.git
 
 # Acesse a pasta do projeto no terminal/cmd
-$ cd <>
+$ cd plann.er
 
 # Vá para a pasta do Backend
-$ cd <>
+$ cd backend
 
 # Instale as dependências
 $ npm install
 
-# Execute a aplicação em modo de desenvolvimento
-$ npm <>
+# Renomeie .env-example pra .env
 
-# O servidor inciará na porta:X - acesse http://localhost:X
+# Execute a aplicação em modo de desenvolvimento
+$ npm run dev
+
+# O servidor inciará na porta:3333 - acesse http://localhost:3333
 
 ```
 
@@ -154,23 +174,25 @@ $ npm <>
 ```bash
 
 # Acesse a pasta do projeto no seu terminal/cmd
-$ cd <>
+$ cd plann.er
 
 # Vá para a pasta do Frontend
-$ cd <>
+$ cd frontend
 
 # Instale as dependências
 $ npm install
 
 # Execute a aplicação em modo de desenvolvimento
-$ npm <>
+$ npm run dev
 
-# A aplicação será aberta na porta:X - acesse http://localhost:X
+# A aplicação será aberta na porta que aparecerá no console
+
+#Na pasta backend/.env altere WEB_BASE_URL= para o endereço que apareceu no console
 
 ```
 
 </div>
- -->
+
 <br>
 
 <div id="autor">
